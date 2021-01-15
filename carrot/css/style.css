@@ -93,13 +93,23 @@ img {
 
 /* corrot */
 .carrot {
+  position: relative;
+  padding-top: 25%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   text-align: center;
 }
 
 .carrot__info {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
   display: inline-block;
   text-align: center;
   padding: 20px;
+  z-index: 2;
 }
 
 .carrot__info .button {
@@ -113,7 +123,7 @@ img {
   background: green;
 }
 
-.carrot__info .button__toggle {
+.carrot__info .button.toggle {
   background: tomato;
 }
 
@@ -151,13 +161,13 @@ img {
 }
 
 .carrot__content {
-  position: absolute;
-  width: 100%;
-  padding-top: 25%;
+  position: relative;
+  height: 100%;
 }
 
 .carrot__content .item {
   position: absolute;
+  top: 0;
   width: 100px;
   cursor: pointer;
 }
