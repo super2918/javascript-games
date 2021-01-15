@@ -1,1 +1,193 @@
-/* No CSS */
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.carrot {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: url(../img/background.png) no-repeat center center;
+  background-size: cover;
+}
+
+/* common */
+.round-square {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  font-size: 30px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  background: white;
+  border: 3px solid brown;
+}
+
+.button {
+  display: inline-block;
+  background: transparent;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+/* corrot */
+.carrot {
+  text-align: center;
+}
+
+.carrot__info {
+  display: inline-block;
+  text-align: center;
+  padding: 20px;
+}
+
+.carrot__info .button {
+  display: inline-block;
+  min-width: 160px;
+  padding: 4px 10px;
+  height: 50px;
+  font-size: 30px;
+  border-radius: 8px;
+  color: white;
+  background: green;
+}
+
+.carrot__info .button__toggle {
+  background: tomato;
+}
+
+.carrot__info .button:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.carrot__info .timer {
+  margin: 10px 0;
+}
+
+.carrot__info .timer__icon {
+  font-size: 30px;
+  margin-right: 8px;
+}
+
+.carrot__info .count__icon {
+  font-size: 30px;
+  margin-right: 8px;
+}
+
+.carrot__audio {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+.carrot__audio .button {
+  font-size: 30px;
+}
+
+.carrot__audio .button:hover {
+  color: tomato;
+}
+
+.carrot__content {
+  position: absolute;
+  width: 100%;
+  padding-top: 25%;
+}
+
+.carrot__content .item {
+  position: absolute;
+  width: 100px;
+  cursor: pointer;
+}
+
+.modal {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background: wheat;
+  width: 300px;
+  padding: 30px 20px;
+  font-size: 40px;
+  border-radius: 10px;
+  border: 3px solid brown;
+}
+
+.modal .button {
+  margin-top: 20px;
+  font-size: 40px;
+}
+
+.modal .button:hover {
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+
+.modal--show {
+  display: block;
+}
