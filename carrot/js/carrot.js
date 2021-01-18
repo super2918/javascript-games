@@ -50,7 +50,7 @@
     $itemDiv.setAttribute('class', $itemClass);
 
     const $itemImg = new Image();
-    $itemImg.src = `../carrot/img/${item}.png`;
+    $itemImg.src = `../img/${item}.png`;
 
     $itemDiv.appendChild($itemImg);
     $carrotWrap.appendChild($itemDiv);
