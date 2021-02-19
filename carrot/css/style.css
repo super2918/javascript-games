@@ -52,151 +52,123 @@ table {
   border-spacing: 0;
 }
 
-.carrot {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  background: url(../img/background.png) no-repeat center center;
-  background-size: cover;
+/* base */
+button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
 }
 
-/* common */
-.round-square {
+.ly-wrapper {
+  position: relative;
+  text-align: center;
+}
+
+.game {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 800px;
+  height: 500px;
+  margin: auto;
+  background: url(../img/background.png) no-repeat center/cover;
+}
+
+.game__header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 20px;
+}
+
+.game__button {
+  width: 60px;
+  height: 60px;
+  background: white;
+  border: 4px solid #000;
+  border-radius: 4px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.game__button:hover {
+  background: green;
+  color: white;
+  border-color: white;
+}
+
+.game__timer {
+  width: 100px;
+  background: white;
+  text-align: center;
+  border: 5px solid black;
+  border-radius: 4px;
+  font-size: 2rem;
+  margin: 10px;
+}
+
+.game__score {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  font-size: 30px;
-  padding: 10px 20px;
-  border-radius: 8px;
-  background: white;
-  border: 3px solid brown;
-}
-
-.button {
-  display: inline-block;
-  background: transparent;
-  border: 0;
-  outline: none;
-  cursor: pointer;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-}
-
-img {
-  width: 100%;
-}
-
-/* corrot */
-.carrot {
-  position: relative;
-  padding-top: 25%;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  text-align: center;
-}
-
-.carrot__info {
-  position: absolute;
-  top: 20px;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
-  display: inline-block;
-  text-align: center;
-  padding: 20px;
-  z-index: 2;
-}
-
-.carrot__info .button {
-  display: inline-block;
-  min-width: 160px;
-  padding: 4px 10px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 50px;
   height: 50px;
-  font-size: 30px;
-  border-radius: 8px;
-  color: white;
-  background: green;
+  background: white;
+  border-radius: 50%;
+  font-size: 2rem;
+  border: 5px solid black;
 }
 
-.carrot__info .button.toggle {
-  background: tomato;
-}
-
-.carrot__info .button:hover {
-  -webkit-transform: scale(1.1);
-          transform: scale(1.1);
-}
-
-.carrot__info .timer {
-  margin: 10px 0;
-}
-
-.carrot__info .timer__icon {
-  font-size: 30px;
-  margin-right: 8px;
-}
-
-.carrot__info .count__icon {
-  font-size: 30px;
-  margin-right: 8px;
-}
-
-.carrot__audio {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-}
-
-.carrot__audio .button {
-  font-size: 30px;
-}
-
-.carrot__audio .button:hover {
-  color: tomato;
-}
-
-.carrot__content {
-  position: relative;
+.game__field {
+  width: 100%;
   height: 100%;
+  margin-top: 40px;
+  background: blue;
+  opacity: 0.4;
 }
 
-.carrot__content .item {
-  position: absolute;
-  top: 0;
-  width: 100px;
-  cursor: pointer;
-}
-
-.modal {
-  display: none;
+.pop-up {
   position: absolute;
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-  background: wheat;
-  width: 300px;
-  padding: 30px 20px;
-  font-size: 40px;
-  border-radius: 10px;
-  border: 3px solid brown;
+  width: 400px;
+  height: 140px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 4px;
+  border: 3px solid white;
+  color: white;
+  text-align: center;
 }
 
-.modal .button {
+.pop-up__refresh {
+  width: 60px;
+  height: 60px;
+  font-size: 3rem;
+  color: white;
+}
+
+.pop-up__message {
+  font-size: 1rem;
   margin-top: 20px;
-  font-size: 40px;
-}
-
-.modal .button:hover {
-  -webkit-transform: rotate(-45deg);
-          transform: rotate(-45deg);
-}
-
-.modal--show {
-  display: block;
 }

@@ -10,18 +10,11 @@
   }
 
   let isStart = true;
-  const BUG_NUM = 10;
-  const CARROT_NUM = 10;
+  const MIN_NUM = 10;
+  const MAX_NUM= 20;
 
   function startGame() {
-    /*if(isStart) {
-      // 버튼 스타일 
-      toggleButton();
-      // randoms Items
-      getRandomItems();
-      // 클릭 이벤트 등록
-      $carrotWrap.addEventListener('click', handleClickEvent);
-    } */
+    // start Button 중복? 
 
     // 버튼 스타일 
     toggleButton();
@@ -43,6 +36,7 @@
     }
   }
 
+  // 아이템을 생성했어
   function createItems(item) {
     const $itemDiv = document.createElement('div');
     const $itemClass = `item item__${item}`;
@@ -50,38 +44,58 @@
     $itemDiv.setAttribute('class', $itemClass);
 
     const $itemImg = new Image();
-    $itemImg.src = `../img/${item}.png`;
+    $itemImg.src = `./img/${item}.png`;
 
     $itemDiv.appendChild($itemImg);
     $carrotWrap.appendChild($itemDiv);
   
-    return item;
+    return $itemDiv;
   }
 
+  // 클릭이 될때 일어나는 일들
   function handleClickEvent() { 
-    // winner and lost status function 
-    // count
-    // sounds
   }
 
+  // Random으로 아이템되는 애들 모여모여 
   function getRandomItems() {
     const carrot = createItems('carrot');
     const bug = createItems('bug');
 
-    const random = Math.random();
+    printItems(carrot);
     
   }
 
-  // winner
+  // Random Number
+  function getRandomArbitrary(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
+  }
 
-  // show modal 
+  // 각각의 아이템들 출력이 되어야해 어케?
+  function printItems(item) {
+    // 빈 어레이 넣고 > 그걸 출력하게 한다? 그럼 그것들을 가져다 꽂으면 되는 거자나?
+    const randomNum = getRandomArbitrary(MIN_NUM, MAX_NUM);
+    console.log(item, randomNum);
+
+  }
+
+  // who is winner
+  function checkWinner() {
+    // when ? checking winner ?
+  }
+
+  // show modal when know winner 
+  function showModal() {}
 
   // timer 
   function countTiemr() {}
 
-  // count 
+  // count when click item - carrot
+  function decreaseCount() {}
+  
+  // add sounds how? 
+  function addSounds() {}
 
-  // sounds
+  // remove events 
   
   function init() {
     $startButton.addEventListener('click', startGame);
