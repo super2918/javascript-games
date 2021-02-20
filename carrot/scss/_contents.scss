@@ -60,6 +60,7 @@ button {
     border-radius: 4px;
     font-size: 2rem;
     margin: 10px;
+    visibility: hidden;
   }
 
   &__score {
@@ -72,6 +73,7 @@ button {
     border-radius: 50%;
     font-size: 2rem;
     border: 5px solid black; 
+    visibility: hidden;
   }
 
   &__field {
