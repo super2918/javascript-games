@@ -2,9 +2,6 @@
 $width: 800px;
 $height: 500px;
 
-// color
-
-// background-color
 
 /* base */
 button {
@@ -15,8 +12,13 @@ button {
 
 
 .ly-wrapper {
+  display: flex;
+  align-items: center;
   position: relative;
+  width: 100vw;
+  height: 100vh;
   text-align: center;
+  background: black;
 }
 
 .game {
@@ -26,6 +28,7 @@ button {
   width: $width;
   height: $height;
   margin: auto;
+  border-radius: 8px;
   background: url(../img/background.png) no-repeat center/cover;
 }
 

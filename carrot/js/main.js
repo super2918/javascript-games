@@ -1,8 +1,8 @@
 'use strict';
 const CARROT_SIZE = 80;
-const CARROT_COUNT = 5;
-const BUG_COUNT = 5;
-const GAME_DURATION_SEC = 5;
+const CARROT_COUNT = 20;
+const BUG_COUNT = 20;
+const GAME_DURATION_SEC = 20;
 
 const field = document.querySelector('.game__field');
 const fieldRect = field.getBoundingClientRect();
@@ -36,7 +36,7 @@ gameButton.addEventListener('click', () => {
 popUpRefreshButton.addEventListener('click', () => {
   startGame();
   hidePopUp();
-})
+});
 
 function startGame() {
   started = true;
@@ -63,10 +63,10 @@ function finishGame(win) {
     playSound(winSound);
   } else {
     playSound(bugSound);
-    stopSound(bgSound);
   }
 
   stopGameTimer();
+  stopSound(bgSound);
   showPopupWithText(win ? 'YOU WON 🎉' :'YOU LOST 😫');
 }
 
@@ -123,8 +123,8 @@ function hidePopUp() {
 
 function initGame() {
   // reset
+  score = 0;
   field.innerHTML = '';
-  // score
   gameScore.textContent = CARROT_COUNT;
 
   addItem('carrot', CARROT_COUNT, './img/carrot.png');

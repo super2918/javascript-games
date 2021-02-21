@@ -60,8 +60,17 @@ button {
 }
 
 .ly-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   position: relative;
+  width: 100vw;
+  height: 100vh;
   text-align: center;
+  background: black;
 }
 
 .game {
@@ -76,6 +85,7 @@ button {
   width: 800px;
   height: 500px;
   margin: auto;
+  border-radius: 8px;
   background: url(../img/background.png) no-repeat center/cover;
 }
 
