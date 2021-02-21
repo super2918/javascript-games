@@ -10,35 +10,57 @@ const gameButton = document.querySelector('.game__button');
 const gameTimer = document.querySelector('.game__timer');
 const gameScore = document.querySelector('.game__score');
 
+const popUp = document.querySelector('.pop-up');
+const popUpText = document.querySelector('.pop-up__message');
+const popUpRefreshButton = document.querySelector('.pop-up__refresh');
+
 let started = false;
-let socre = 0;
+let score = 0;
 let timer = undefined;
 
+field.addEventListener('click', onFieldClick);
 gameButton.addEventListener('click', () => {
   if(started) { // 게임이 시작되었다면 중지
     stopGame();
   } else { // 게임이 시작하지 않았다면 시작
     startGame();
   }
-  started = !started; 
-  /*
-  게임이 진행중이라면(started 는 true로), 게임을 중지하는 함수를 호출하고,
-  started의 반대값인 false를 started에 할당해 줘서, 다음에 버튼이 클릭 된다면 started는 false가 되므로 시작하는 함수를 호출한다.
-  */
 });
 
+popUpRefreshButton.addEventListener('click', () => {
+  startGame();
+  hidePopUp();
+})
+
 function startGame() {
+  started = true;
   initGame();
   showStopButton();
   showTimerAndScore();
   startGameTimer();
 }
-function stopGame() {}
+
+function stopGame() {
+  started = false;
+  stopGameTimer();
+  hideGameButton();
+  showPopupWithText('REPLAY');
+}
+
+function finishGame(win) {
+  started = false;
+  hideGameButton();
+  showPopupWithText(win ? 'YOU WON 🎉' :'YOU LOST 😫');
+}
 
 function showStopButton() {
-  const icon = gameButton.querySelector('.fa-play');
+  const icon = gameButton.querySelector('.fas');
   icon.classList.add('fa-stop');
   icon.classList.remove('fa-play');
+}
+
+function hideGameButton() {
+  gameButton.style.visibility = 'hidden';
 }
 
 function showTimerAndScore() {
@@ -53,10 +75,15 @@ function startGameTimer() {
   timer = setInterval(() => {
     if(remainingTimeSec <= 0) {
       clearInterval(timer);
+      finishGame(CARROT_COUNT === score);
       return
     } 
     updateTimerText(--remainingTimeSec);
   }, 1000);
+}
+
+function stopGameTimer() {
+  clearInterval(timer);
 }
 
 function updateTimerText(timer) {
@@ -67,6 +94,15 @@ function updateTimerText(timer) {
   gameTimer.textContent = `${minutes} : ${seconds}`;
 }
 
+function showPopupWithText(text) {
+  popUpText.textContent = text;
+  popUp.classList.add('pop-up--show');
+}
+
+function hidePopUp() {
+  popUp.classList.remove('pop-up--show');
+}
+
 function initGame() {
   // reset
   field.innerHTML = '';
@@ -74,8 +110,35 @@ function initGame() {
   gameScore.textContent = CARROT_COUNT;
 
   addItem('carrot', CARROT_COUNT, './img/carrot.png');
-  console.log(addItem)
-  addItem('bug', BUG_COUNT, './img/bug.png')
+  addItem('bug', BUG_COUNT, './img/bug.png');
+}
+
+function onFieldClick(event) {
+
+  if(!started) { // 게임이 시작하지 않았을 경우 리턴 
+    return;
+  }
+
+  const target = event.target; 
+
+  if (target.matches('.carrot')) {
+    target.remove();
+    score++;
+    updateScoreBoard();
+    
+    if (score === CARROT_COUNT) {
+      // socre 와 carrot의 숫자가 같을 경우도 게임이 끝나는
+      finishGame(true);
+    }
+
+  } else if (target.matches('.bug')) {
+    stopGameTimer();
+    finishGame(false);
+  }
+}
+
+function updateScoreBoard() {
+  gameScore.textContent = CARROT_COUNT - score;
 }
 
 function addItem(className, count, imgPath) {

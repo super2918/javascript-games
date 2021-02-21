@@ -146,6 +146,11 @@ button {
   margin-top: 40px;
 }
 
+.game__field .carrot,
+.game__field .bug {
+  cursor: pointer;
+}
+
 .pop-up {
   display: none;
   position: absolute;
@@ -170,7 +175,21 @@ button {
   color: white;
 }
 
+.pop-up__refresh .fa-redo {
+  -webkit-transition: all .3s;
+  transition: all .3s;
+}
+
+.pop-up__refresh:hover .fa-redo {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
 .pop-up__message {
   font-size: 1rem;
   margin-top: 20px;
+}
+
+.pop-up--show {
+  display: block;
 }
