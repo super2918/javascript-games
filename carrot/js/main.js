@@ -1,4 +1,6 @@
 'use strict';
+import PopUp from './popup.js';
+
 const CARROT_SIZE = 80;
 const CARROT_COUNT = 20;
 const BUG_COUNT = 20;
@@ -10,10 +12,6 @@ const gameButton = document.querySelector('.game__button');
 const gameTimer = document.querySelector('.game__timer');
 const gameScore = document.querySelector('.game__score');
 
-const popUp = document.querySelector('.pop-up');
-const popUpText = document.querySelector('.pop-up__message');
-const popUpRefreshButton = document.querySelector('.pop-up__refresh');
-
 const carrotSound = new Audio('./sound/carrot_pull.mp3'); 
 const alertSound = new Audio('./sound/alert.wav'); 
 const bgSound = new Audio('./sound/bg.mp3'); 
@@ -24,18 +22,20 @@ let started = false;
 let score = 0;
 let timer = undefined;
 
+const gameFinshBanner = new PopUp;
+
+gameFinshBanner.setClickListener(() => {
+  startGame();
+});
+
 field.addEventListener('click', onFieldClick);
+
 gameButton.addEventListener('click', () => {
   if(started) { // 게임이 시작되었다면 중지
     stopGame();
   } else { // 게임이 시작하지 않았다면 시작
     startGame();
   }
-});
-
-popUpRefreshButton.addEventListener('click', () => {
-  startGame();
-  hidePopUp();
 });
 
 function startGame() {
@@ -51,7 +51,7 @@ function stopGame() {
   started = false;
   stopGameTimer();
   hideGameButton();
-  showPopupWithText('REPLAY');
+  gameFinshBanner.showWithText('REPLAY');
   playSound(alertSound);
   stopSound(bgSound);
 }
@@ -67,7 +67,7 @@ function finishGame(win) {
 
   stopGameTimer();
   stopSound(bgSound);
-  showPopupWithText(win ? 'YOU WON 🎉' :'YOU LOST 😫');
+  gameFinshBanner.showWithText(win ? 'YOU WON 🎉' :'YOU LOST 😫');
 }
 
 function showStopButton() {
@@ -110,15 +110,6 @@ function updateTimerText(timer) {
   const seconds = timer % 60;
 
   gameTimer.textContent = `${minutes} : ${seconds}`;
-}
-
-function showPopupWithText(text) {
-  popUpText.textContent = text;
-  popUp.classList.add('pop-up--show');
-}
-
-function hidePopUp() {
-  popUp.classList.remove('pop-up--show');
 }
 
 function initGame() {
