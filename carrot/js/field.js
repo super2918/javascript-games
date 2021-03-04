@@ -49,18 +49,18 @@ export default class Field {
   }
 
   onClick(event) {
-    const target = event.target; 
+    const target = event.target;
+    console.log(target);
     if (target.matches('.carrot')) {
       target.remove();
       this.onItemClick && this.onItemClick('carrot');
-      // 등록된 콜백이 있다면 함수를 호출 하라
     } else if (target.matches('.bug')) {
       this.onItemClick && this.onItemClick('bug');
     }
   }
-
 }
 
+// static한 함수 
 function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }

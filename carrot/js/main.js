@@ -1,6 +1,7 @@
 'use strict';
 import PopUp from './popup.js';
 import Field from './field.js';
+import Sound from './sound.js';
 
 const CARROT_COUNT = 20;
 const BUG_COUNT = 20;
@@ -10,22 +11,24 @@ const gameButton = document.querySelector('.game__button');
 const gameTimer = document.querySelector('.game__timer');
 const gameScore = document.querySelector('.game__score');
 
-const carrotSound = new Audio('./sound/carrot_pull.mp3'); 
-const alertSound = new Audio('./sound/alert.wav'); 
-const bgSound = new Audio('./sound/bg.mp3'); 
-const bugSound = new Audio('./sound/bug_pull.mp3'); 
-const winSound = new Audio('./sound/game_win.mp3'); 
+// const carrotSound = new Audio('./sound/carrot_pull.mp3'); 
+// const alertSound = new Audio('./sound/alert.wav'); 
+// const bgSound = new Audio('./sound/bg.mp3'); 
+// const bugSound = new Audio('./sound/bug_pull.mp3'); 
+// const winSound = new Audio('./sound/game_win.mp3'); 
 
 let started = false;
 let score = 0;
 let timer = undefined;
 
 const gameFinshBanner = new PopUp;
+const gameField = new Field(CARROT_COUNT, BUG_COUNT);
+const gameSound = new Sound();
+
 gameFinshBanner.setClickListener(() => {
   startGame();
 });
 
-const gameField = new Field(CARROT_COUNT, BUG_COUNT);
 gameField.setClickListener(onItemClick);
 
 gameButton.addEventListener('click', () => {
@@ -57,6 +60,7 @@ function stopGame() {
 function finishGame(win) {
   started = false;
   hideGameButton();
+
   if(win) {
     playSound(winSound);
   } else {
@@ -138,14 +142,6 @@ function onItemClick(item) {
   }
 }
 
-function playSound(sound) {
-  sound.currentTiem = 0;
-  sound.play();
-}
-
-function stopSound(sound) {
-  sound.pause();
-}
 
 function updateScoreBoard() {
   gameScore.textContent = CARROT_COUNT - score;
