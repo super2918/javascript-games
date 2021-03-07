@@ -12,6 +12,9 @@ export default class Field {
     this.field = document.querySelector('.game__field');
     this.fieldRect = this.field.getBoundingClientRect();
     this.field.addEventListener('click', this.onClick );
+    // 어떤 클래스 안에 있는 함수를 다른 콜백으로 전달 될때 그 함수에 포함되어있는 클래스 정보가 사라진다. 그래서 클래스와 함수를 묶을 수 있는 this와 함수를 묶는 바인딩
+    // this의 정보가 무시되기 때문에 this를 바인딩 한다.
+    // 3가지 방법, bind(this), 또는 callback에 arrow, onclick을 멤버변수로 만들고  arrow -> this가 자동적 바인딩이 되게 한다.
   }
 
   init() {
@@ -48,12 +51,13 @@ export default class Field {
     }
   }
 
-  onClick(event) {
+  onClick = (event) =>  {
     const target = event.target;
-    console.log(target);
+
     if (target.matches('.carrot')) {
       target.remove();
       this.onItemClick && this.onItemClick('carrot');
+      // this를
     } else if (target.matches('.bug')) {
       this.onItemClick && this.onItemClick('bug');
     }
